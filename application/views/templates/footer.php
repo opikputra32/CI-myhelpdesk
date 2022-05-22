@@ -1,8 +1,8 @@
 <footer class="main-footer">
-	<strong>Copyright &copy; 2014-2019 <a href="">Abriel Omar</a>.</strong>
+	<strong>Copyright &copy; 2022.</strong>
 	All rights reserved.
 	<div class="float-right d-none d-sm-inline-block">
-		<b>Created by :</b> Donny Kurniawan
+		<b>Created by :</b> Abriel Omar
 	</div>
 </footer>
 

@@ -83,6 +83,7 @@ CREATE TABLE `mst_user` (
   `nama` text NOT NULL,
   `email` varchar(250) NOT NULL,
   `username` varchar(150) NOT NULL,
+	`no_telp` text NOT NULL,
   `password` text NOT NULL,
   `level` text NOT NULL,
   `date_created` date NOT NULL,
@@ -94,10 +95,10 @@ CREATE TABLE `mst_user` (
 -- Dumping data for table `mst_user`
 --
 
-INSERT INTO `mst_user` (`id`, `nama`, `email`, `username`, `password`, `level`, `date_created`, `image`, `is_active`) VALUES
-(9, 'Donny Kurniawan', 'ata.adonia@gmail.com', 'admin', '$2y$10$X/CJ0lA8IxifIulrHolXH.l.vHQLr5Lw08RgWZEwbcmUVgXeYh58O', 'Admin', '2019-08-06', 'avatar04.png', 1),
-(21, 'Ratna Damayanti', 'ata.adonia@gmail.com', 'user', '$2y$10$mqXKJp5DnPw1v1hN05ja4OQXXFbZu7orAxIH/mCuuiRHJPIj9p5be', 'User', '2019-10-21', 'avatar3.png', 1),
-(29, 'Adonia Vincent N', 'adonia.ata@gmail.com', 'ata', '$2y$10$afzURR4XoI2JGia63raKMuJd4OgdyKRFE9pDYsUPYpo5VHhAjlmX2', 'User', '2020-01-19', 'default.jpg', 1);
+INSERT INTO `mst_user` (`id`, `nama`, `email`, `username`,`no_telp`, `password`, `level`, `date_created`, `image`, `is_active`) VALUES
+(9, 'Donny Kurniawan', 'ata.adonia@gmail.com', 'admin','082212481723', '$2y$10$X/CJ0lA8IxifIulrHolXH.l.vHQLr5Lw08RgWZEwbcmUVgXeYh58O', 'Admin', '2019-08-06', 'avatar04.png', 1),
+(21, 'Ratna Damayanti', 'ata.adonia@gmail.com', 'user', '082212481724', '$2y$10$mqXKJp5DnPw1v1hN05ja4OQXXFbZu7orAxIH/mCuuiRHJPIj9p5be', 'User', '2019-10-21', 'avatar3.png', 1),
+(29, 'Adonia Vincent N', 'adonia.ata@gmail.com', 'ata', '082212481725', '$2y$10$afzURR4XoI2JGia63raKMuJd4OgdyKRFE9pDYsUPYpo5VHhAjlmX2', 'User', '2020-01-19', 'default.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -110,8 +111,9 @@ CREATE TABLE `tb_komplain` (
   `sess_id` int(11) NOT NULL,
   `sess_proses` text NOT NULL,
   `area_keluhan` text NOT NULL,
-  `client` text NOT NULL,
-  `saran` text NOT NULL,
+	`jabatan` text NOT NULL,
+  -- `client` text NOT NULL,
+  -- `saran` text NOT NULL,
   `date_komplain` date NOT NULL,
   `jam_komplain` time NOT NULL,
   `image_komplain` varchar(250) NOT NULL,
@@ -127,14 +129,14 @@ CREATE TABLE `tb_komplain` (
 -- Dumping data for table `tb_komplain`
 --
 
-INSERT INTO `tb_komplain` (`id_komplain`, `sess_id`, `sess_proses`, `area_keluhan`, `client`, `saran`, `date_komplain`, `jam_komplain`, `image_komplain`, `tanggapan`, `tgl_tanggapan`, `jam_tanggapan`, `image_tanggapan`, `status_komplain`, `status_selesai`) VALUES
-(13, 21, '', 'Customer service', 'CV Jaya Abadi', 'tes', '2020-01-17', '13:12:00', '', 'tes123456', '2020-01-17', '13:13:00', 'photo4_(1)1.jpg', 0, 0),
-(14, 21, 'Ratna Damayanti', 'Kasir', 'Sakti Utama', 'Harap ada pendidikan lebih', '2020-01-17', '12:35:00', '', 'Sudah diproses oleh kepala kasir', '2020-02-11', '14:14:00', 'user2.jpg', 0, 0),
-(15, 29, '', 'Security', 'PT Semesta Sakti', 'coba ah', '2020-01-20', '12:04:00', 'adonia_(2).png', '', '0000-00-00', '00:00:00', '', 1, 1),
-(16, 29, '', 'Dapur', 'CV Jaya Abadi', 'Makanan kurang bersih', '2020-01-19', '13:15:00', '', 'Sudah ada penggantian', '2020-01-20', '07:57:00', 'motor1.jpg', 0, 0),
-(17, 21, '', 'Parkir', 'Garuda Jaya', 'Jajal yo', '2020-01-21', '13:14:00', '', 'tes aja lagi', '2020-01-21', '15:16:00', 'motor2.jpg', 0, 0),
-(18, 21, 'Ratna Damayanti', 'Gudang Barang', 'Ardhika Karya', 'Tes saja deh', '2020-02-11', '13:12:00', '', 'Sudah ada follow up dari Management', '0000-00-00', '00:00:00', '5.png', 0, 0),
-(19, 21, 'Ratna Damayanti', 'Pelayan Toko', 'Park Mountain', 'Kurang ramah dan galak', '2020-02-11', '09:12:00', '', 'Sudah ada follow up management', '2020-02-11', '12:13:00', '1.png', 0, 0);
+INSERT INTO `tb_komplain` (`id_komplain`, `sess_id`, `sess_proses`, `area_keluhan`, `jabatan`,`date_komplain`, `jam_komplain`, `image_komplain`, `tanggapan`, `tgl_tanggapan`, `jam_tanggapan`, `image_tanggapan`, `status_komplain`, `status_selesai`) VALUES
+(13, 21, '', 'Customer service','Manager','2020-01-17', '13:12:00', '', 'tes123456','2020-01-17', '13:13:00', 'photo4_(1)1.jpg', 0, 0),
+(14, 21, 'Ratna Damayanti', 'Kasir','Assisten Manager', '2020-01-17', '12:35:00', '', 'Sudah diproses oleh kepala kasir', '2020-02-11', '14:14:00', 'user2.jpg', 0, 0),
+(15, 29, '', 'Security','Kepala gudang' , '2020-01-20', '12:04:00', 'adonia_(2).png', '','0000-00-00', '00:00:00', '', 1, 1),
+(16, 29, '', 'Dapur', 'Staff','2020-01-19', '13:15:00', '', 'Sudah ada penggantian', '2020-01-20', '07:57:00', 'motor1.jpg', 0, 0),
+(17, 21, '', 'Parkir', 'Staff','2020-01-21', '13:14:00', '', 'tes aja lagi', '2020-01-21', '15:16:00', 'motor2.jpg', 0, 0),
+(18, 21, 'Ratna Damayanti', 'Gudang Barang','Staff', '2020-02-11', '13:12:00', '', 'Sudah ada follow up dari Management','0000-00-00', '00:00:00', '5.png', 0, 0),
+(19, 21, 'Ratna Damayanti', 'Pelayan Toko', 'Staff','2020-02-11', '09:12:00', '', 'Sudah ada follow up management', '2020-02-11', '12:13:00', '1.png', 0, 0);
 
 --
 -- Indexes for dumped tables
