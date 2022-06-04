@@ -50,7 +50,15 @@
 <script src="<?php echo base_url('assets/'); ?>dist/js/demo.js"></script>
 <script>
 	$(function() {
-		$("#table-id").DataTable();
+		$("#table-id").DataTable({
+			"paging": true,
+			"lengthChange": false,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			pageLength: 10,
+		});
 		$('#id-table').DataTable({
 			"paging": true,
 			"lengthChange": false,
@@ -58,6 +66,7 @@
 			"ordering": true,
 			"info": true,
 			"autoWidth": false,
+			pageLength: 10,
 		});
 	});
 </script>

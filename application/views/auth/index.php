@@ -24,7 +24,7 @@
 </head>
 <style type="text/css">
 	body {
-		background: url('<?php echo base_url(); ?>/assets/dist/img/pict2.jpg') no-repeat center center fixed;
+		background: url('<?php echo base_url(); ?>/assets/dist/img/bg-welcome.jpg') no-repeat center center fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		background-size: cover;
@@ -32,6 +32,10 @@
 
 	.swal2-popup {
 		font-size: 0.9rem !important;
+	}
+
+	.color-primary {
+		color: #007bff;
 	}
 </style>
 
@@ -43,7 +47,7 @@
 		<!-- /.login-logo -->
 		<div class="card">
 			<div class="card-body login-card-body">
-				<h4 class="login-box-msg pl-0">- Helpdesk Login -</h4>
+				<h4 class="login-box-msg pl-0 color-primary">LOGIN HELPDESK</h4>
 				<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 				<?php echo $this->session->flashdata('msg'); ?>
 				<form action="<?php base_url('auth/index'); ?>" method="post">

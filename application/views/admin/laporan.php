@@ -23,7 +23,6 @@
 	<section class="content">
 		<div class="container-fluid">
 			<div class="card card-primary card-outline">
-				<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
 				<?php if (validation_errors()) { ?>
 					<div class="alert alert-danger">
 						<a class="close" data-dismiss="alert">x</a>
@@ -32,14 +31,17 @@
 				<?php } ?>
 				<div class="card">
 					<div class="card-header">
+
+						<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
+						<?php echo $this->session->flashdata('msg'); ?>
 						<buttton type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-print"></i> &nbspCetak Data</buttton>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
 							<table class=" table table-bordered table-hover" id="table-id" style="font-size:14px;">
 								<thead>
-									<th>#</th>
-									<th>Operator</th>
+									<th>No</th>
+									<th>Nama</th>
 									<th>Level</th>
 									<th>Keluhan</th>
 									<th>Tgl Komplain</th>
@@ -104,7 +106,7 @@
 					</div>
 				</form>
 
-				<h5>Cetak Data Berdasarkan Bulan, Tahun dan Klien</h5>
+				<h5>Cetak Data Berdasarkan Bulan, Tahun</h5>
 				<form action="<?php echo base_url('admin/cetak_bulan'); ?>" method="post" target="_blank">
 					<div class="form-row">
 						<div class="form-group col-md-4">
@@ -136,7 +138,7 @@
 								?>
 							</select>
 						</div>
-						<div class="form-group col-md-4">
+						<!-- <div class="form-group col-md-4">
 							<span class="font-weight-bold">Klien :</span>
 							<input type="text" class="form-control form-control-sm" name="client" id="client" list="cars" required />
 							<datalist id="cars">
@@ -145,7 +147,7 @@
 								<?php endforeach; ?>
 							</datalist>
 
-						</div>
+						</div> -->
 						<div class="form-group col-md-2 mt-4">
 							<input type="submit" class="btn btn-primary btn-sm" value="Cetak" />
 						</div>

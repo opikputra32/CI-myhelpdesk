@@ -84,12 +84,15 @@
 								<strong><?php echo strip_tags(validation_errors()); ?></strong>
 							</div>
 						<?php } ?>
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add-saran">
+							Tambah Keluhan
+						</button>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
 							<table class=" table table-bordered table-hover" id="table-id" style="font-size:14px;">
 								<thead>
-									<th>#</th>
+									<th>No</th>
 									<th>Nama</th>
 									<th>Keluhan</th>
 									<th>Tgl Komplain</th>
@@ -205,6 +208,58 @@
 						</div>
 						<button type="submit" class="btn btn-primary mr-2">Simpan Perubahan </button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+					</form>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+</div>
+
+
+<div class="modal fade" id="add-saran">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Tambah Keluhan</h4>
+			</div>
+			<div class="modal-body">
+				<div class="box-body">
+					<?php echo form_open_multipart('admin/add_komplain'); ?>
+					<div class="form-group">
+						<label for="username">Keluhan</label>
+						<input type="text" class="form-control form-control-sm" name="area_keluhan" required>
+					</div>
+					<div class="form-group">
+						<label for="nama">Jabatan</label>
+						<input type="text" class="form-control form-control-sm" name="jabatan" required />
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="nama">Tanggal Komplain</label>
+								<input type="date" class="form-control form-control-sm" name="date_komplain" required>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="nama">Jam Komplain</label>
+								<input type="time" class="form-control form-control-sm" name="jam_komplain" required>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="exampleFormControlFile1">Upload Gambar</label>
+								<input type="file" class="form-control-file" name="image">
+							</div>
+						</div>
+						<span class="text-muted" style="font-size:12px;">* Format gambar JPG, JPEG, PNG, GIF dan ukuran gambar kurang dari 2 mb</span>
+						<span class="text-muted" style="font-size:12px;">* Format Jam Komplain : 00:00 PM / AM</span>
+						<hr>
+					</div>
+					<button type="submit" class="btn btn-primary pull-right">Kirim Data</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
 					</form>
 				</div>
 			</div>

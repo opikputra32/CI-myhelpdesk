@@ -41,7 +41,7 @@
 						<div class="table-responsive">
 							<table class=" table table-bordered table-hover" id="table-id" style="font-size:14px;">
 								<thead>
-									<th>#</th>
+									<th>No</th>
 									<th>Nama User</th>
 									<th>Level</th>
 									<th>Keluhan</th>

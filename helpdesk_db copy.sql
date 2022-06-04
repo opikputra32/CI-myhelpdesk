@@ -103,6 +103,15 @@ CREATE TABLE `tb_komplain` (
 -- Dumping data for table `tb_komplain`
 --
 
+INSERT INTO `tb_komplain` (`id_komplain`, `sess_id`, `sess_proses`, `area_keluhan`, `jabatan`,`date_komplain`, `jam_komplain`, `image_komplain`, `tanggapan`, `tgl_tanggapan`, `jam_tanggapan`, `image_tanggapan`, `status_komplain`, `status_selesai`) VALUES
+(13, 21, '', 'Customer service','Manager','2020-01-17', '13:12:00', '', 'tes123456','2020-01-17', '13:13:00', 'photo4_(1)1.jpg', 0, 0),
+(14, 21, 'Ratna Damayanti', 'Kasir','Assisten Manager', '2020-01-17', '12:35:00', '', 'Sudah diproses oleh kepala kasir', '2020-02-11', '14:14:00', 'user2.jpg', 0, 0),
+(15, 29, '', 'Security','Kepala gudang' , '2020-01-20', '12:04:00', '', '','0000-00-00', '00:00:00', '', 1, 1),
+(16, 29, '', 'Dapur', 'Staff','2020-01-19', '13:15:00', '', 'Sudah ada penggantian', '2020-01-20', '07:57:00', 'motor1.jpg', 0, 0),
+(17, 21, '', 'Parkir', 'Staff','2020-01-21', '13:14:00', '', 'tes aja lagi', '2020-01-21', '15:16:00', 'motor2.jpg', 0, 0),
+(18, 21, 'Ratna Damayanti', 'Gudang Barang','Staff', '2020-02-11', '13:12:00', '', 'Sudah ada follow up dari Management','0000-00-00', '00:00:00', '5.png', 0, 0),
+(19, 21, 'Ratna Damayanti', 'Pelayan Toko', 'Staff','2020-02-11', '09:12:00', '', 'Sudah ada follow up management', '2020-02-11', '12:13:00', '1.png', 0, 0);
+
 --
 -- Indexes for dumped tables
 --

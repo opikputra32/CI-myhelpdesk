@@ -100,7 +100,7 @@
 						<div class="table-responsive">
 							<table class=" table table-bordered table-hover" id="table-id" style="font-size:14px;">
 								<thead>
-									<th>#</th>
+									<th>No</th>
 									<th>Pelapor</th>
 									<th>Keluhan</th>
 									<th>Jabatan</th>
@@ -411,19 +411,7 @@
 						<input type="hidden" name="id_komplain" id="idjson">
 						<input type="text" class="form-control form-control-sm" id="area" readonly>
 					</div>
-					<div class="form-group">
-						<label for="nama">Client</label>
-						<input type="text" class="form-control form-control-sm" id="client" list="cars" readonly />
-						<datalist id="cars">
-							<?php foreach ($client as $cl) : ?>
-								<option><?php echo $cl['nama_client']; ?></option>
-							<?php endforeach; ?>
-						</datalist>
-					</div>
-					<div class="form-group">
-						<label for="nama">Saran</label>
-						<input type="text" class="form-control form-control-sm" id="saran" readonly>
-					</div>
+
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">

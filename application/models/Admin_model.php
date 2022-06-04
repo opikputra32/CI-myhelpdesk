@@ -30,6 +30,16 @@ class Admin_model extends CI_model
 			return 0;
 		}
 	}
+	public function countAdmin()
+	{
+		$query = $this->db->query(
+			"SELECT COUNT(id) as isProses
+                               FROM mst_user
+                               WHERE level = 'Admin'"
+		);
+
+		return $query->result_array();
+	}
 
 	public function countProses()
 	{
@@ -107,12 +117,12 @@ class Admin_model extends CI_model
 		return $query;
 	}
 
-	public function getCetakBulan($bulan, $tahun, $client)
+	public function getCetakBulan($bulan, $tahun)
 	{
 		$query = $this->db->query("SELECT *
                                         FROM tb_komplain JOIN mst_user 
                                         ON tb_komplain.sess_id = mst_user.id
-                                        WHERE month(date_komplain)='$bulan' AND year(date_komplain)='$tahun' AND tb_komplain.client = '$client'
+                                        WHERE month(date_komplain)='$bulan' AND year(date_komplain)='$tahun'
                                         ORDER BY tb_komplain.id_komplain DESC
                                        ");
 		return $query->result_array();
@@ -128,25 +138,11 @@ class Admin_model extends CI_model
                                        ");
 		return $query->result_array();
 	}
-
-	public function getCetakClient($client)
-	{
-		$query = $this->db->query("SELECT *
-                                        FROM tb_komplain JOIN mst_user 
-                                        ON tb_komplain.sess_id = mst_user.id
-                                        WHERE tb_komplain.client = '$client'
-                                        ORDER BY tb_komplain.id_komplain DESC
-                                       ");
-		return $query->result_array();
-	}
-
 	public function getDetailKomplain($id_komplain)
 	{
 		$query = $this->db->query("SELECT *
                                         FROM tb_komplain JOIN mst_user 
                                         ON tb_komplain.sess_id = mst_user.id
-                                        -- JOIN mst_client
-                                        -- ON mst_client.nama_client = tb_komplain.client
                                         WHERE tb_komplain.id_komplain = '$id_komplain'
                                         ORDER BY tb_komplain.id_komplain DESC
                                        ");

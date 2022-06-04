@@ -40,7 +40,7 @@
 						<div class="table-responsive">
 							<table class=" table table-bordered table-hover" id="table-id" style="font-size:14px;">
 								<thead>
-									<th>#</th>
+									<th>No</th>
 									<th>Pelapor</th>
 									<th>Keluhan</th>
 									<th>Jabatan</th>
@@ -174,7 +174,7 @@
 					</div>
 				</form>
 
-				<h5>Cetak Data Berdasarkan Bulan, Tahun dan Klien</h5>
+				<h5>Cetak Data Berdasarkan Bulan, Tahun</h5>
 				<form action="<?php echo base_url('user/cetak_bulan'); ?>" method="post" target="_blank">
 					<div class="form-row">
 						<div class="form-group col-md-4">
@@ -206,16 +206,7 @@
 								?>
 							</select>
 						</div>
-						<div class="form-group col-md-4">
-							<span class="font-weight-bold">Klien :</span>
-							<input type="text" class="form-control form-control-sm" name="client" id="client" list="cars" required />
-							<datalist id="cars">
-								<?php foreach ($client as $cl) : ?>
-									<option><?php echo $cl['nama_client']; ?></option>
-								<?php endforeach; ?>
-							</datalist>
 
-						</div>
 						<div class="form-group col-md-2 mt-4">
 							<input type="submit" class="btn btn-primary btn-sm" value="Cetak" />
 						</div>

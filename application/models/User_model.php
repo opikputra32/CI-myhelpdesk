@@ -111,19 +111,17 @@ class User_model extends CI_model
                                         ORDER BY tb_komplain.id_komplain DESC
                                        ");
 		return $query->row_array();
-		//  -- LEFT JOIN mst_client
-		//-- ON mst_client.nama_client = tb_komplain.client
 	}
 	public function getTelpUser($idUser)
 	{
 	}
-	public function getCetakBulan($bulan, $tahun, $client)
+	public function getCetakBulan($bulan, $tahun)
 	{
 		$sess_id = $this->session->userdata('id');
 		$query = $this->db->query("SELECT *
                                         FROM tb_komplain JOIN mst_user 
                                         ON tb_komplain.sess_id = mst_user.id
-                                        WHERE month(date_komplain)='$bulan' AND year(date_komplain)='$tahun' AND tb_komplain.sess_id = '$sess_id' AND tb_komplain.client = '$client'
+                                        WHERE month(date_komplain)='$bulan' AND year(date_komplain)='$tahun' AND tb_komplain.sess_id = '$sess_id'
                                         ORDER BY tb_komplain.id_komplain DESC
                                        ");
 		return $query->result_array();
@@ -136,18 +134,6 @@ class User_model extends CI_model
                                         FROM tb_komplain JOIN mst_user 
                                         ON tb_komplain.sess_id = mst_user.id
                                         WHERE tb_komplain.date_komplain = '$tanggal' AND tb_komplain.sess_id = '$sess_id'
-                                        ORDER BY tb_komplain.id_komplain DESC
-                                       ");
-		return $query->result_array();
-	}
-
-	public function getCetakClient($client)
-	{
-		$sess_id = $this->session->userdata('id');
-		$query = $this->db->query("SELECT *
-                                        FROM tb_komplain JOIN mst_user 
-                                        ON tb_komplain.sess_id = mst_user.id
-                                        WHERE tb_komplain.client = '$client' AND tb_komplain.sess_id = '$sess_id'
                                         ORDER BY tb_komplain.id_komplain DESC
                                        ");
 		return $query->result_array();

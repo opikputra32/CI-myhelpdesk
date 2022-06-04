@@ -17,7 +17,6 @@ class User extends CI_Controller
 		$data['title'] = 'Dashboard';
 		$data['user'] = $this->db->get_where('mst_user', ['username' => $this->session->userdata('username')])->row_array();
 		$data['list_komplain'] = $this->user->getKomplainAll();
-		$data['client'] = $this->db->get('mst_client')->result_array();
 		$data['count_user'] = $this->user->countJmlUser();
 		$data['count_komplain_belum'] = $this->user->countBelum();
 		$data['count_komplain_proses'] = $this->user->countProses();
@@ -37,7 +36,6 @@ class User extends CI_Controller
 			$data['title'] = 'Dashboard';
 			$data['user'] = $this->db->get_where('mst_user', ['username' => $this->session->userdata('username')])->row_array();
 			$data['list_komplain'] = $this->db->get_where('tb_komplain', ['status_komplain' => 1])->result_array();
-			$data['client'] = $this->db->get('mst_client')->result_array();
 			$data['count_user'] = $this->user->countJmlUser();
 			$data['count_komplain_belum'] = $this->user->countBelum();
 			$data['count_komplain_proses'] = $this->user->countProses();
@@ -90,7 +88,6 @@ class User extends CI_Controller
 			$data['title'] = 'Dashboard';
 			$data['user'] = $this->db->get_where('mst_user', ['username' => $this->session->userdata('username')])->row_array();
 			$data['list_komplain'] = $this->db->get_where('tb_komplain', ['status_komplain' => 1])->result_array();
-			$data['client'] = $this->db->get('mst_client')->result_array();
 			$data['count_user'] = $this->user->countJmlUser();
 			$data['count_komplain_belum'] = $this->user->countBelum();
 			$data['count_komplain_proses'] = $this->user->countProses();
@@ -124,7 +121,6 @@ class User extends CI_Controller
 			$data['title'] = 'Dashboard';
 			$data['user'] = $this->db->get_where('mst_user', ['username' => $this->session->userdata('username')])->row_array();
 			$data['list_komplain'] = $this->db->get_where('tb_komplain', ['status_komplain' => 1])->result_array();
-			// $data['client'] = $this->db->get('mst_client')->result_array();
 			$data['count_user'] = $this->user->countJmlUser();
 			$data['count_komplain_belum'] = $this->user->countBelum();
 			$data['count_komplain_proses'] = $this->user->countProses();
@@ -171,7 +167,6 @@ class User extends CI_Controller
 			$data['title'] = 'Dashboard';
 			$data['user'] = $this->db->get_where('mst_user', ['username' => $this->session->userdata('username')])->row_array();
 			$data['list_komplain'] = $this->user->getKomplainAll();
-			$data['client'] = $this->db->get('mst_client')->result_array();
 			$data['count_user'] = $this->user->countJmlUser();
 			$data['count_komplain_belum'] = $this->user->countBelum();
 			$data['count_komplain_proses'] = $this->user->countProses();
@@ -204,12 +199,10 @@ class User extends CI_Controller
 			}
 			$id_komplain = $this->input->post('id_komplain', true);
 			$area_keluhan = $this->input->post('area_keluhan', true);
-			$client = $this->input->post('client', true);
 			$saran = $this->input->post('saran', true);
 			$date_komplain = $this->input->post('date_komplain', true);
 			$jam_komplain = $this->input->post('jam_komplain', true);
 			$this->db->set('area_keluhan', $area_keluhan);
-			$this->db->set('client', $client);
 			$this->db->set('saran', $saran);
 			$this->db->set('date_komplain', $date_komplain);
 			$this->db->set('jam_komplain', $jam_komplain);
@@ -237,8 +230,7 @@ class User extends CI_Controller
 		$data['title'] = 'Laporan Saya';
 		$data['user'] = $this->db->get_where('mst_user', ['username' => $this->session->userdata('username')])->row_array();
 		$data['list_komplain'] = $this->db->get_where('tb_komplain', ['sess_id' => $this->session->userdata('id')])->result_array();
-		var_dump($data['list_komplain']);
-		$data['client'] = $this->db->get('mst_client')->result_array();
+		// var_dump($data['list_komplain']);
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar_user', $data);
@@ -264,7 +256,6 @@ class User extends CI_Controller
 		$data['title'] = 'Detail Komplain';
 		$data['user'] = $this->db->get_where('mst_user', ['username' => $this->session->userdata('username')])->row_array();
 		$data['detail'] = $this->user->getDetailKomplain($id_komplain);
-		// var_dump($data['user']);
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar_user', $data);
@@ -277,7 +268,6 @@ class User extends CI_Controller
 	{
 		$bulan = $_POST['bulan'];
 		$tahun = $_POST['tahun'];
-		$client = $_POST['client'];
 
 		$this->load->library('pdf');
 		$pdf = new FPDF('l', 'mm', 'A4');
@@ -295,7 +285,7 @@ class User extends CI_Controller
 			$pdf->Cell(30, 4, 'April', 0, 1);
 		elseif ($bulan == 5) :
 			$pdf->Cell(30, 4, 'Mei', 0, 1);
-		elseif ($bulan == 4) :
+		elseif ($bulan == 6) :
 			$pdf->Cell(30, 4, 'Juni', 0, 1);
 		elseif ($bulan == 7) :
 			$pdf->Cell(30, 4, 'Juli', 0, 1);
@@ -315,34 +305,31 @@ class User extends CI_Controller
 		$pdf->Cell(100, 4, 'Tahun ' . $tahun, 0, 1);
 		$pdf->Cell(100, 2, '', 0, 1);
 		$pdf->SetFont('Times', 'B', 10);
-		$pdf->Cell(6, 6, '#', 1, 0, 'C');
+		$pdf->Cell(6, 6, 'No', 1, 0, 'C');
 		$pdf->Cell(30, 6, 'Operator', 1, 0, 'C');
-		$pdf->Cell(60, 6, 'Nama Klien', 1, 0, 'C');
 		$pdf->Cell(50, 6, 'Keluhan', 1, 0, 'C');
 		$pdf->Cell(20, 6, 'Tgl.Kompl', 1, 0, 'C');
 		$pdf->Cell(65, 6, 'Penyelesaian', 1, 0, 'C');
 		$pdf->Cell(40, 6, 'Keterangan', 1, 1, 'C');
 
 		$pdf->SetFont('Times', '', 10);
-		$client = $this->user->getCetakBulan($bulan, $tahun, $client);
+		$data = $this->user->getCetakBulan($bulan, $tahun);
 		$i = 1;
-		foreach ($client as $p) {
-			$pdf->Cell(6, 6, $i++, 1, 0);
-			$pdf->Cell(30, 6, $p['nama'], 1, 0);
-			$pdf->Cell(60, 6, $p['client'], 1, 0);
-			$pdf->Cell(50, 6, $p['area_keluhan'], 1, 0);
-			$pdf->Cell(20, 6, $p['date_komplain'], 1, 0);
-			$pdf->Cell(65, 6, $p['tanggapan'], 1, 0);
-			$pdf->Cell(40, 6, '', 1, 1);
-			// if ($p['jaminan_pulang'] == 1) :
-			//     $pdf->Cell(20, 6, 'Jaminan', 1, 1);
-			// elseif ($p['jaminan_pulang'] == 2) :
-			//     $pdf->Cell(20, 6, 'Penolakan', 1, 1);
-			// else :
-			//     $pdf->Cell(20, 6, 'NULL', 1, 1);
-			// endif;
+
+		if (count($data) > 0) {
+			foreach ($data as $p) {
+				$pdf->Cell(6, 6, $i++, 1, 0);
+				$pdf->Cell(30, 6, $p['nama'], 1, 0);
+				$pdf->Cell(50, 6, $p['area_keluhan'], 1, 0);
+				$pdf->Cell(20, 6, $p['date_komplain'], 1, 0);
+				$pdf->Cell(65, 6, $p['tanggapan'], 1, 0);
+				$pdf->Cell(40, 6, '', 1, 1);
+			}
+			$pdf->Output();
+		} else {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Data tidak ditemukan</div>');
+			redirect('user/laporan');
 		}
-		$pdf->Output();
 	}
 
 	public function cetak_tanggal()
@@ -357,63 +344,31 @@ class User extends CI_Controller
 		$pdf->Cell(30, 6, format_indo($tanggal), 0, 1);
 		$pdf->Cell(100, 2, '', 0, 1);
 		$pdf->SetFont('Times', 'B', 10);
-		$pdf->Cell(6, 6, '#', 1, 0, 'C');
+		$pdf->Cell(6, 6, 'No', 1, 0, 'C');
 		$pdf->Cell(30, 6, 'Operator', 1, 0, 'C');
 		$pdf->Cell(50, 6, 'Keluhan', 1, 0, 'C');
-		$pdf->Cell(60, 6, 'Nama Klien', 1, 0, 'C');
 		$pdf->Cell(20, 6, 'Tgl.Kompl', 1, 0, 'C');
 		$pdf->Cell(65, 6, 'Penyelesaian', 1, 0, 'C');
 		$pdf->Cell(40, 6, 'Keterangan', 1, 1, 'C');
 
 		$pdf->SetFont('Times', '', 10);
-		$client = $this->user->getCetakTanggal($tanggal);
+		$data = $this->user->getCetakTanggal($tanggal);
 		$i = 1;
-		foreach ($client as $p) {
-			$pdf->Cell(6, 6, $i++, 1, 0);
-			$pdf->Cell(30, 6, $p['nama'], 1, 0);
-			$pdf->Cell(50, 6, $p['area_keluhan'], 1, 0);
-			$pdf->Cell(60, 6, $p['client'], 1, 0);
-			$pdf->Cell(20, 6, $p['date_komplain'], 1, 0);
-			$pdf->Cell(65, 6, $p['tanggapan'], 1, 0);
-			$pdf->Cell(40, 6, '', 1, 1);
+
+		if (count($data) > 0) {
+			foreach ($data as $p) {
+				$pdf->Cell(6, 6, $i++, 1, 0);
+				$pdf->Cell(30, 6, $p['nama'], 1, 0);
+				$pdf->Cell(50, 6, $p['area_keluhan'], 1, 0);
+				$pdf->Cell(20, 6, $p['date_komplain'], 1, 0);
+				$pdf->Cell(65, 6, $p['tanggapan'], 1, 0);
+				$pdf->Cell(40, 6, '', 1, 1);
+			}
+			$pdf->Output();
+		} else {
+
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Data tidak ditemukan</div>');
+			redirect('user/laporan');
 		}
-		$pdf->Output();
-	}
-
-	public function cetak_client()
-	{
-		$client = $_POST['client'];
-
-		$this->load->library('pdf');
-		$pdf = new FPDF('l', 'mm', 'A4');
-		$pdf->AddPage();
-		$pdf->SetFont('Times', 'B', 11);
-		$pdf->Cell(56, 4, 'Laporan Komplain dan Keluhan ', 0, 1);
-		$pdf->Cell(30, 6, $client, 0, 1);
-		$pdf->Cell(100, 2, '', 0, 1);
-		$pdf->SetFont('Times', 'B', 10);
-		$pdf->Cell(6, 6, '#', 1, 0, 'C');
-		$pdf->Cell(60, 6, 'User', 1, 0, 'C');
-		$pdf->Cell(60, 6, 'Area Keluhan', 1, 0, 'C');
-		$pdf->Cell(60, 6, 'Nama Klien', 1, 0, 'C');
-		$pdf->Cell(20, 6, 'Tgl.Kompl', 1, 0, 'C');
-		$pdf->Cell(20, 6, 'Jam Kompl', 1, 0, 'C');
-		$pdf->Cell(20, 6, 'Tgl.Tangg', 1, 0, 'C');
-		$pdf->Cell(20, 6, 'jam.Tangg', 1, 1, 'C');
-
-		$pdf->SetFont('Times', '', 10);
-		$client = $this->user->getCetakClient($client);
-		$i = 1;
-		foreach ($client as $p) {
-			$pdf->Cell(6, 6, $i++, 1, 0);
-			$pdf->Cell(60, 6, $p['nama'], 1, 0);
-			$pdf->Cell(60, 6, $p['area_keluhan'], 1, 0);
-			$pdf->Cell(60, 6, $p['client'], 1, 0);
-			$pdf->Cell(20, 6, $p['date_komplain'], 1, 0);
-			$pdf->Cell(20, 6, $p['jam_komplain'], 1, 0);
-			$pdf->Cell(20, 6, $p['tgl_tanggapan'], 1, 0);
-			$pdf->Cell(20, 6, $p['jam_tanggapan'], 1, 1);
-		}
-		$pdf->Output();
 	}
 }
